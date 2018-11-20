@@ -19,7 +19,7 @@ else
     BUILDBOT_CONFIG_DIR=${BUILDBOT_CONFIG_DIR:-config}
     mkdir -p $B/$BUILDBOT_CONFIG_DIR
     # if it ends with .tar.gz then its a tarball, else its directly the file
-    if echo "$BUILDBOT_CONFIG_URL" | grep '.tar.gz$' >/dev/null
+    if echo "$BUILDBOT_CONFIG_URL" | grep -E '.tar.gz(\?.*)$' >/dev/null
     then
         until curl -sL $BUILDBOT_CONFIG_URL | tar -xz --strip-components=1 --directory=$B/$BUILDBOT_CONFIG_DIR
         do
